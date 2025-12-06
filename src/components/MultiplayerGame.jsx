@@ -12,6 +12,10 @@ const getSocketServer = () => {
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     return 'http://localhost:5001';
   }
+  // For Netlify deployment, use Railway backend (set this in Netlify env vars)
+  if (window.location.hostname.includes('netlify.app')) {
+    return process.env.REACT_APP_RAILWAY_URL || 'https://your-railway-backend.up.railway.app';
+  }
   // For network access, use the current host
   return `http://${window.location.hostname}:5001`;
 };
