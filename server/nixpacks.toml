@@ -1,0 +1,5 @@
+[build]
+builder = "nixpacks"
+
+[nixpacks]
+buildCommand = "npm install --legacy-peer-deps"
