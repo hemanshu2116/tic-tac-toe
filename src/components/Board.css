@@ -1,0 +1,46 @@
+.board-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.game-status {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #667eea;
+    min-height: 40px;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    background: #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 350px;
+    aspect-ratio: 1;
+}
+
+@media (max-width: 480px) {
+    .game-status {
+        font-size: 1.2em;
+    }
+}
