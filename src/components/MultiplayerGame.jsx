@@ -3,9 +3,20 @@ import io from 'socket.io-client';
 import MultiplayerBoard from './MultiplayerBoard';
 import './MultiplayerGame.css';
 
-// Get the socket server URL from environment or default
-const SOCKET_SERVER = process.env.REACT_APP_SOCKET_SERVER || 'http://192.168.1.12:5001';
+// Get the socket server URL - use environment variable or detect automatically
+const getSocketServer = () => {
+  if (process.env.REACT_APP_SOCKET_SERVER) {
+    return process.env.REACT_APP_SOCKET_SERVER;
+  }
+  // For local development on different machines
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return 'http://localhost:5001';
+  }
+  // For network access, use the current host
+  return `http://${window.location.hostname}:5001`;
+};
 
+const SOCKET_SERVER = getSocketServer();
 console.log('Socket Server URL:', SOCKET_SERVER);
 
 const MultiplayerGame = ({ onBack }) => {
