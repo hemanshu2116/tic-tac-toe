@@ -31,6 +31,7 @@ const Board = ({ onWin }) => {
     }
     return null;
   }, [squares]);
+  
   const isBoardFull = useMemo(() => squares.every(square => square !== null), [squares]);
 
   useEffect(() => {

@@ -1,0 +1,106 @@
+.game-mode-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 60px 40px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 3em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.2em;
+    margin-bottom: 50px;
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mode-btn {
+    background: white;
+    border: 3px solid #667eea;
+    border-radius: 15px;
+    padding: 40px 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.mode-btn:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.mode-btn:active {
+    transform: translateY(-5px);
+}
+
+.icon {
+    font-size: 3.5em;
+}
+
+.label {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #333;
+}
+
+.description {
+    font-size: 0.9em;
+    color: #999;
+}
+
+.local-btn {
+    border-color: #667eea;
+}
+
+.local-btn:hover {
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+}
+
+.multiplayer-btn {
+    border-color: #e74c3c;
+}
+
+.multiplayer-btn:hover {
+    box-shadow: 0 15px 40px rgba(231, 76, 60, 0.3);
+    background: rgba(231, 76, 60, 0.05);
+}
+
+@media (max-width: 600px) {
+    .game-mode-container {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 2.2em;
+    }
+
+    .mode-buttons {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .mode-btn {
+        min-width: 100%;
+    }
+}
