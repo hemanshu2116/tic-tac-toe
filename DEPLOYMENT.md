@@ -1,4 +1,70 @@
-# Render.com Deployment Guide
+# GitHub Pages Deployment Guide (FREE)
+
+## Quick Setup - GitHub Pages
+
+### Step 1: Deploy Backend to Render.com
+1. Go to [render.com](https://render.com) and sign up with GitHub
+2. Create a new **Web Service** from your GitHub repo
+3. Configure:
+   - **Root Directory**: `server`
+   - **Build Command**: Leave empty or `npm install`
+   - **Start Command**: `npm start`
+4. Copy your Render URL (e.g., `https://tic-tac-toe-server.onrender.com`)
+
+### Step 2: Deploy Frontend to GitHub Pages
+1. **Install Node.js** (if not installed):
+   ```bash
+   # macOS
+   brew install node
+   
+   # Or download from https://nodejs.org
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Deploy to GitHub Pages**:
+   ```bash
+   npm run deploy
+   ```
+
+4. **Enable GitHub Pages** (first time only):
+   - Go to your GitHub repo: `https://github.com/hemanshu2116/tic-tac-toe`
+   - Click **Settings** → **Pages**
+   - Under "Source", select branch: **gh-pages**
+   - Click **Save**
+
+### Step 3: Set Environment Variable
+Since GitHub Pages doesn't support environment variables at build time, we need to either:
+
+**Option A: Hardcode the backend URL** (simplest)
+- Edit `src/components/MultiplayerGame.jsx`
+- Replace line 18 with your actual Render URL:
+  ```javascript
+  console.error('REACT_APP_SOCKET_SERVER environment variable is not set!');
+  return 'https://your-render-url.onrender.com'; // Your actual URL
+  ```
+
+**Option B: Use .env file** (for local builds)
+- Create `.env` file in root:
+  ```
+  REACT_APP_SOCKET_SERVER=https://your-render-url.onrender.com
+  ```
+- Run `npm run deploy`
+
+### Your Site URLs
+- **Frontend**: https://hemanshu2116.github.io/tic-tac-toe
+- **Backend**: Your Render URL
+
+---
+
+# Alternative: Render.com Deployment Guide
+
+## Deploy Everything on Render.com (Frontend + Backend)
+
+This is simpler if you want everything in one place.
 
 ## Step 1: Create Render Account
 1. Go to [render.com](https://render.com)
