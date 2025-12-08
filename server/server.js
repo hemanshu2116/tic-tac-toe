@@ -153,9 +153,14 @@ io.on('connection', (socket) => {
 
   // Join an existing game
   socket.on('join-game', (gameId, callback) => {
-    const game = games.get(gameId);
+    const normalizedGameId = gameId.trim().toUpperCase();
+    console.log(`Attempting to join game: ${normalizedGameId}`);
+    console.log(`Active games:`, Array.from(games.keys()));
+    
+    const game = games.get(normalizedGameId);
 
     if (!game) {
+      console.log(`Game not found: ${normalizedGameId}`);
       callback({ success: false, error: 'Game not found' });
       return;
     }
@@ -167,14 +172,14 @@ io.on('connection', (socket) => {
 
     game.addPlayer(socket.id, 'O');
     game.gameStatus = 'active';
-    socket.join(gameId);
-    socket.gameId = gameId;
+    socket.join(normalizedGameId);
+    socket.gameId = normalizedGameId;
 
     // Notify both players
-    io.to(gameId).emit('game-state', game.getGameState());
+    io.to(normalizedGameId).emit('game-state', game.getGameState());
     callback({ success: true, gameState: game.getGameState() });
 
-    console.log(`Player joined game: ${gameId}`);
+    console.log(`Player joined game: ${normalizedGameId}`);
   });
 
   // Make a move

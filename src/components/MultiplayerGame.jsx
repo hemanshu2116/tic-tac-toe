@@ -123,9 +123,10 @@ const MultiplayerGame = ({ onBack }) => {
     setIsLoading(true);
     setMessage('Joining game...');
     
-    socket.emit('join-game', joinCode.toUpperCase(), (response) => {
+    const normalizedCode = joinCode.trim().toUpperCase();
+    socket.emit('join-game', normalizedCode, (response) => {
       if (response && response.success) {
-        setGameId(joinCode.toUpperCase());
+        setGameId(normalizedCode);
         setPlayerSymbol('O');
         setGameState(response.gameState);
         setMessage('Joined game successfully!');
