@@ -5,19 +5,18 @@ import './MultiplayerGame.css';
 
 // Get the socket server URL - use environment variable or detect automatically
 const getSocketServer = () => {
+  // Always prefer environment variable if set
   if (process.env.REACT_APP_SOCKET_SERVER) {
     return process.env.REACT_APP_SOCKET_SERVER;
   }
-  // For local development on different machines
+  // For local development
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     return 'http://localhost:5001';
   }
-  // For Netlify deployment, use Railway backend (set this in Netlify env vars)
-  if (window.location.hostname.includes('netlify.app')) {
-    return process.env.REACT_APP_RAILWAY_URL || 'https://your-railway-backend.up.railway.app';
-  }
-  // For network access, use the current host
-  return `http://${window.location.hostname}:5001`;
+  // For production deployments (Netlify, Vercel, etc.)
+  // You MUST set REACT_APP_SOCKET_SERVER environment variable with your Render.com backend URL
+  console.error('REACT_APP_SOCKET_SERVER environment variable is not set!');
+  return 'http://localhost:5001'; // Fallback
 };
 
 const SOCKET_SERVER = getSocketServer();
